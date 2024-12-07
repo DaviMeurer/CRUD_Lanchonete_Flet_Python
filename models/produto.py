@@ -7,12 +7,8 @@ class Produto:
         self.qtd=parQtd
 
     def listar(self):
-        print(f" Cod: {self.cod}"+
-              f" | Produto: {self.descricao[:20]:<20}"
-              f" | Preço: {self.preco}"+
-              f" | Qtd: {self.qtd}")
+        print(  f" Cod: {self.cod}"+
+                f" | Produto: {self.descricao[:20]:<20}"
+                f" | Preço: {self.preco}"+
+                f" | Qtd: {self.qtd}")
 
-    def alterar(self, descricao, preco, quantidade):
-        self.descricao=descricao
-        self.preco=preco
-        self.qtd=quantidade
