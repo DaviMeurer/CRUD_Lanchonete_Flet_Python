@@ -3,14 +3,14 @@ from models.produto import Produto
 
 class ProdutoController:
     #C - Criar um novo registro no banco de dados
-    def inserir(conexao, produto): 
+    def inserir(conexao, produtos): 
         try:
             cursor = conexao.cursor()
             #usar o %s para evitar o SQL injector
-            query = "INSERT INTO produto(descricao, preco, qtd) VALUES(%s, %s, %s)"
-            cursor.execute(query, (produto.descricao,produto.preco,produto.qtd))
+            query = "INSERT INTO produtos(descricao, preco, qtd) VALUES(%s, %s, %s)"
+            cursor.execute(query, (produtos.descricao,produtos.preco,produtos.qtd))
             conexao.commit()
-            print(f"{produto.descricao} Registrado como sucesso!")
+            print(f"{produtos.descricao} Registrado como sucesso!")
             
         except mysql.connector.Error as e:
             print(f"Erro ao inserir produto:{e}")  
@@ -39,7 +39,7 @@ class ProdutoController:
     def update(conexao, idProduto, preco, qtd):
         try:
             cursor =  conexao.cursor()
-            query = "UPDATE produto SET preco=%s, qtd=%s WHERE id_codigo_produto=%s"
+            query = "UPDATE produtos SET preco=%s, qtd=%s WHERE id_codigo_produto=%s"
             cursor.execute(query, (preco, qtd, idProduto))
             conexao.commit()
             print(f"{idProduto} atualizado com sucesso!")
@@ -67,7 +67,7 @@ class ProdutoController:
         listaProduto=[]
         try:
             cursor = conexao.cursor()
-            query = "Select * from produto where descricao like %s "
+            query = "Select * from produtos where descricao like %s "
             cursor.execute(query, ("%"+busca+"%",))
             registros = cursor.fetchall()
         
